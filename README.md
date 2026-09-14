@@ -2,13 +2,25 @@
 
 Self-contained Jupyter notebooks implementing **CBAG** (Class-Balanced Adversarial Generation) with real generators and a **Tri-Gate** filter.
 
-Designed for UAV / Access-Point wireless network traffic datasets. The method generates realistic adversarial samples that:
+Designed for UAV / Access-Point wireless network traffic datasets.
 
-1. **Evade** a target detector (Gate-1: high P(benign/Normal))
-2. Stay close to the original distribution according to an **oracle** and optional CMR (Gate-2)
-3. Satisfy an L1-distance / feature-constraint operating point (Gate-3)
+## Current Status
 
-## Notebooks
+The repository structure is ready (README, requirements, LICENSE).
+
+**The three full cleaned notebooks are prepared and available in the project artifacts.**  
+Please upload them via the GitHub web interface:
+
+1. Go to this repository
+2. Click **Add file → Upload files**
+3. Upload these three files:
+   - `CBAG_UAV1_clean.ipynb`
+   - `CBAG_AccessPoint_clean.ipynb`
+   - `CBAG_GSC_clean.ipynb`
+
+All code functionality is 100% preserved (only empty cells removed + improved documentation).
+
+## Notebooks (after upload)
 
 | Notebook | Dataset | Target class | Notes |
 |----------|---------|--------------|-------|
@@ -18,7 +30,7 @@ Designed for UAV / Access-Point wireless network traffic datasets. The method ge
 
 ## Generators (inlined)
 
-- Classical: C-SA (Simulated Annealing), C-RL, C-PSO, C-GA, C-BO
+- Classical: C-SA, C-RL, C-PSO, C-GA, C-BO
 - Generative: CG-Diffusion, CC-CGAN
 - Black-box: HopSkipJump, Sign-OPT
 
@@ -26,24 +38,16 @@ Designed for UAV / Access-Point wireless network traffic datasets. The method ge
 
 ```bash
 pip install -r requirements.txt
-# Place the CSV datasets or update the `glob` path in Cell 1 of each notebook
+# Update the dataset `glob` path in Cell 1 of each notebook
 jupyter notebook CBAG_UAV1_clean.ipynb
 ```
 
-1. Edit the **CONTROL PANEL** in Cell 1 (dataset path, SUBSAMPLE, EVAL_CAP, gate thresholds, …).
-2. Run cells top-to-bottom. Each phase writes a cache under `cbag_cache_<DATASET>/`.
-3. Re-run Phase 3 (`phase3`) with different Tri-Gate settings without regenerating candidates.
+## Getting a DOI
 
-## Citation / DOI
-
-If you use this code, please cite the associated paper (update with your arXiv / journal reference).
-
-A DOI for this repository can be obtained by:
-
-1. Creating a GitHub Release (e.g. `v1.0.0`)
-2. Linking the repository to [Zenodo](https://zenodo.org) (Settings → GitHub → Enable)
-3. Zenodo will automatically archive the release and mint a DOI.
+1. Create a GitHub Release (tag `v1.0.0`)
+2. Go to https://zenodo.org → Login with GitHub → Enable this repository
+3. Zenodo will mint a DOI for the release
 
 ## License
 
-MIT License — free for academic and research use.
+MIT License
