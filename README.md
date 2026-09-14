@@ -1,27 +1,53 @@
 # CBAG — Class-Balanced Adversarial Generation
 
-**Important:** The full code files are ready in your project artifacts.
+Self-contained implementation of **CBAG** (Class-Balanced Adversarial Generation) with real generators and **Tri-Gate** filtering.
 
-Please upload them now:
+Designed for UAV and Access-Point wireless network traffic datasets.
 
-1. Open this repository: https://github.com/saleemsar/CBAG-Targeted
-2. Click **Add file → Upload files**
-3. Upload these 3 files from your project:
-   - `CBAG_UAV1_clean.ipynb`
-   - `CBAG_AccessPoint_clean.ipynb`
-   - `CBAG_GSC_clean.ipynb`
+## Repository Structure
 
-(Alternatively the pure Python versions: `CBAG_UAV1.py`, `CBAG_AccessPoint.py`, `CBAG_GSC.py`)
+```
+CBAG-Targeted/
+├── README.md
+├── LICENSE
+├── requirements.txt
+│
+├── Notebooks (run these)
+│   ├── cbag-uav1.ipynb              # UAV1 – targeted to Normal
+│   ├── CBAG_AccessPoint_final_1.ipynb  # AccessPoint / UAV2
+│   └── CBAG_GSC_final_1.ipynb         # UAV3 / GSC (benign-mimicry)
+│
+└── Results
+    ├── CBAG_UAV1_results.zip
+    ├── CBAG_UAV3_GSC_results (2).zip
+    └── cbag_out_AccessPoint (2).zip
+```
 
-All original functionality is fully preserved.
+## Quick Start
 
-After uploading:
-- Create a Release tagged `v1.0.0`
-- Go to https://zenodo.org → login with GitHub → enable this repo → get the DOI
+```bash
+pip install -r requirements.txt
+# Edit the dataset path (glob) in Cell 1 of the notebook you want to run
+jupyter notebook cbag-uav1.ipynb
+```
 
-## What is CBAG
+1. Set configuration in the first code cell (dataset path, SUBSAMPLE, EVAL_CAP, gate thresholds).
+2. Run cells top-to-bottom.
+3. Each phase caches to disk — you can re-run the Tri-Gate phase with different thresholds without regenerating candidates.
 
-Class-Balanced Adversarial Generation with real generators + Tri-Gate filtering for UAV / Access-Point network traffic datasets.
+## Generators (all inlined)
+
+- Classical: C-SA, C-RL, C-PSO, C-GA, C-BO
+- Generative: CG-Diffusion, CC-CGAN
+- Black-box: HopSkipJump, Sign-OPT
+
+## Getting a DOI (Zenodo)
+
+1. Create a new **Release** on GitHub (tag `v1.0.0`, title "CBAG v1.0").
+2. Go to [zenodo.org](https://zenodo.org) → Login with GitHub.
+3. Enable the repository **CBAG-Targeted**.
+4. Zenodo will automatically archive the release and give you a DOI.
 
 ## License
-MIT
+
+MIT License
